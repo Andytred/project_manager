@@ -1,61 +1,66 @@
 <p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
+    <div class='card-title d-flex justify-content-between mb-4'>
+      <div>
+        <h2><strong><%= @project.title %></strong></h2>
+      </div>
+      <div>
+        <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' %> |
+        <td><%= link_to 'Destroy', project_path, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </div>
+    </div>
+    <h6>Add task</h6>
+    <%= render 'tasks/form' %>
+  </div>
+</div>
+   
+<div class="card">
+  <div class="card-body">
+    <p>
+      <strong>Title:</strong>
+      <%= @project.title %> </h2>
+    </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
 
-<p>
-  <strong>Position:</strong>
-  <%= @project.position %>
-</p>
+    <p>
+      <strong>Position:</strong>
+      <%= @project.position %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
-
-
+    <p>
+      <strong>User:</strong>
+      <%= @project.user_id %>
+    </p>
+  </div>
+</div>
 <hr>
 
-<h1>New task</h1>
-
-<%= render 'tasks/form' %>
-
-
-<hr>
-
-<h1>Listing tasks</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Is done</th>
-    <th>Project</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @project.tasks.each do |task| %>
-    <% if task.persisted? %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.is_done %></td>
-        <td><%= task.project %></td>
-        <td><%= link_to 'Show', [task.project, task] %></td>
-        <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-        <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+<h4>Tasks</h4>
+<% @project.tasks.each do |task| %>
+  <% if task.persisted? %>
+    <div class="card mb-3">
+      <div class="card-body ">
+        <div class='card-title d-flex justify-content-between mb-4'>
+          <div>
+            <%= task.title %>
+            <%= task.description %>
+            <%= task.is_done %>
+            <% if task.is_done? %>
+              <i class="fas fa-check-square" style="color:green"></i>
+                <% else %>
+                  <input type="checkbox">
+            <% end %>
+          </div>
+          <div>
+            <td><%= link_to 'Show', [task.project, task], class: 'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Destroy', [task.project, task],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-</table>
+<% end%>
 
-<br />
 
-<%= link_to 'New Task', new_project_task_path(@project.id) %>
