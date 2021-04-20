@@ -44,15 +44,11 @@
       <div class="card-body ">
         <div class='card-title d-flex justify-content-between mb-4'>
           <div>
-            <%= task.title %>
-            <%= task.description %>
-            <%= task.is_done %>
-            <% if task.is_done? %>
-              <i class="fas fa-check-square" style="color:green"></i>
-                <% else %>
-                  <input type="checkbox">
-            <% end %>
-          </div>
+              <%= task.title %>
+              <%= task.description %>
+            
+              <%= task.is_done ? "[x]" : "[ ]"%>
+            </div>
           <div>
             <td><%= link_to 'Show', [task.project, task], class: 'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-warning' %></td>
