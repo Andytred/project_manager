@@ -1,11 +1,13 @@
 class ProjectsController < ApplicationController
+  include Pagy::Backend
   before_action :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects
+   
+    @pagy, @projects = pagy(current_user.projects)
   end
 
   # GET /projects/1
