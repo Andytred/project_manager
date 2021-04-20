@@ -46,9 +46,10 @@
           <div>
               <%= task.title %>
               <%= task.description %>
-            
-              <%= task.is_done ? "[x]" : "[ ]"%>
-            </div>
+                <div>
+                <%= task.is_done ? "Done" : "Not completed"%>
+                </div>
+          </div>
           <div>
             <td><%= link_to 'Show', [task.project, task], class: 'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-warning' %></td>
