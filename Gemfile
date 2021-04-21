@@ -27,6 +27,7 @@ gem 'nested_scaffold'
 gem 'pagy', '~> 3.5'
 gem 'simple_form'
 gem 'faker'
+gem 'slim'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -56,6 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec-rails', ">= 3.9.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
