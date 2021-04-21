@@ -37,6 +37,8 @@
 </div>
 <hr>
 
+
+
 <h4>Tasks</h4>
 <% @project.tasks.each do |task| %>
   <% if task.persisted? %>
@@ -56,6 +58,21 @@
             <td><%= link_to 'Destroy', [task.project, task],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </div>
         </div>
+      </div>
+    </div>
+  <% end %>
+<% end%>
+<h4>Tags</h4>
+<% @project.tags.each do |tag| %>
+  <% if tag.persisted? %>
+    <div class="card mb-3">
+      <div class="card-body ">
+        <div class='card-title d-flex justify-content-between mb-4'>
+          <div>
+              <%= tag.title %>
+              
+          </div>
+          
       </div>
     </div>
   <% end %>

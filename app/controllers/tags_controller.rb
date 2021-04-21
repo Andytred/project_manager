@@ -23,9 +23,9 @@ class TagsController < ApplicationController
   # POST projects/1/tags
   def create
     @tag = @project.tags.build(tag_params)
-
+raise
     if @tag.save
-      redirect_to([@tag.project, @tag], notice: 'Tag was successfully created.')
+      redirect_to(@tag.project)
     else
       render action: 'new'
     end
@@ -33,13 +33,15 @@ class TagsController < ApplicationController
 
   # PUT projects/1/tags/1
   def update
-    if @tag.update_attributes(tag_params)
-      redirect_to([@tag.project, @tag], notice: 'Tag was successfully updated.')
+    
+ @task = @project.tags.build(tag_params)
+
+    if @tags.save
+      redirect_to(@task.project)
     else
-      render action: 'edit'
+      render action: 'new'
     end
   end
-
   # DELETE projects/1/tags/1
   def destroy
     @tag.destroy
@@ -60,5 +62,6 @@ class TagsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def tag_params
       params.require(:tag).permit(:title, :project_id)
+      
     end
 end
