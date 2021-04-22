@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-   
     @pagy, @projects = pagy(current_user.projects)
   end
 

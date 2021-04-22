@@ -1,20 +1,18 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'All projects', projects_path, class: 'btn btn-info mb-4' %>
-<div class="card">
-  <div class="card-body">
-    <div class='card-title d-flex justify-content-between mb-4'>
-      <div>
-        <h2><strong><%= @project.title %></strong></h2>
+  <div class="card">
+    <div class="card-body">
+      <div class='card-title d-flex justify-content-between mb-4'>
+        <div>
+          <h2><strong><%= @project.title %></strong></h2>
+        </div>
+        <div>
+          <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' %> |
+          <td><%= link_to 'Destroy', project_path, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </div>
       </div>
-      <div>
-        <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' %> |
-        <td><%= link_to 'Destroy', project_path, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </div>
-    </div>
-    <h6>Add task</h6>
-    <%= render 'tasks/form' %>
-    add tag
-    
+      <h6>Add task</h6>
+      <%= render 'tasks/form' %>
   </div>
 </div>
    
@@ -72,7 +70,11 @@
         <div class='card-title d-flex justify-content-between mb-4'>
           <div>
               <%= tag.title %>
-              
+          </div>
+          <div>
+            <td><%= link_to 'Show', [tag.project, tag], class: 'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_project_tag_path(tag.project, tag), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Destroy', [tag.project, tag], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </div>
           
       </div>
@@ -81,4 +83,3 @@
 <% end%>
 
 
- 
