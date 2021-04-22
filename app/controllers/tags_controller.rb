@@ -23,7 +23,7 @@ class TagsController < ApplicationController
   # POST projects/1/tags
   def create
     @tag = @project.tags.build(tag_params)
-raise
+
     if @tag.save
       redirect_to(@tag.project)
     else
