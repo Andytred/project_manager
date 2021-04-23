@@ -6,8 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+
 puts 'Creating 20 products...'
 20.times do |i|
-  Faker::Name.name 
+  project = Project.new(
+    title: Faker::Company.name
+    
+  )
+project.save!
+
 end
 puts 'Finished!'
