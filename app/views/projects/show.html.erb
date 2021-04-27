@@ -40,13 +40,16 @@
 
 
 <h4>Tasks</h4>
+<h1>New tag</h1>
+
+
 <% @project.tasks.each do |task| %>
   <% if task.persisted? %>
     <div class="card mb-3">
       <div class="card-body ">
         <div class='card-title d-flex justify-content-between mb-4'>
           <div>
-              <%= task.title %>
+            <%= task.title %>
               <%= task.description %>
                 <div>
                 <%= task.is_done ? "Done" : "Not completed"%>
@@ -58,28 +61,29 @@
             <td><%= link_to 'Destroy', [task.project, task],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </div>
         </div>
-      </div>
-    </div>
-  <% end %>
-<% end%>
-<h4>Tags</h4>
-<% @project.tags.each do |tag| %>
-  <% if tag.persisted? %>
-    <div class="card mb-3">
-      <div class="card-body ">
-        <div class='card-title d-flex justify-content-between mb-4'>
-          <div>
-              <%= tag.title %>
+       </div> 
+       <% end %>
+      <% end%>
+      <h4>Tag:</h4>
+      <% @task.tags.each do |tag| %>
+        <% if tag.persisted? %>
+          <div class="card mb-3">
+            <div class="card-body ">
+              <div class='card-title d-flex justify-content-between mb-4'>
+                <div>
+                  
+                  <%= tag.title %>
+                </div>
+                <div>
+                  <td><%= link_to 'Show', [tag.project, tag], class: 'btn btn-info' %></td>
+                  <td><%= link_to 'Edit', edit_project_tag_path(tag.project, tag), class: 'btn btn-warning' %></td>
+                  <td><%= link_to 'Destroy', [tag.project, tag], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </div>
+            </div>
           </div>
-          <div>
-            <td><%= link_to 'Show', [tag.project, tag], class: 'btn btn-info' %></td>
-            <td><%= link_to 'Edit', edit_project_tag_path(tag.project, tag), class: 'btn btn-warning' %></td>
-            <td><%= link_to 'Destroy', [tag.project, tag], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </div>
-          
-      </div>
+        <% end %>
+      <% end%>
     </div>
-  <% end %>
-<% end%>
+        
 
 

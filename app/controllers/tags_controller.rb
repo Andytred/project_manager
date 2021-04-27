@@ -1,10 +1,14 @@
 class TagsController < ApplicationController
   before_action :set_project
+  
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
   # GET projects/1/tags
   def index
-    @tags = @project.tags
+    @project = Project.all
+    @task = Task.all
+    @tag = Tag.all
+    
   end
 
   # GET projects/1/tags/1
@@ -13,7 +17,7 @@ class TagsController < ApplicationController
 
   # GET projects/1/tags/new
   def new
-    @tag = @project.tags.build
+    @tag = @project.tasks.build
   end
 
   # GET projects/1/tags/1/edit
@@ -36,7 +40,7 @@ class TagsController < ApplicationController
     
  @task = @project.tags.build(tag_params)
 
-    if @tags.save
+    if @task.save
       redirect_to(@task.project)
     else
       render action: 'new'
@@ -55,13 +59,15 @@ class TagsController < ApplicationController
        @project = current_user.projects.find(params[:project_id])
     end
 
+    
+
     def set_tag
       @tag = @project.tags.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def tag_params
-      params.require(:tag).permit(:title, :project_id)
+      params.require(:tag).permit(:title, :project_id, :task_id)
       
     end
 end

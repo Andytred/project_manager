@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_085012) do
+ActiveRecord::Schema.define(version: 2021_04_27_191335) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
@@ -21,14 +21,21 @@ ActiveRecord::Schema.define(version: 2021_04_21_085012) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "tag_assignments", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_tag_assignments_on_tag_id"
+    t.index ["task_id"], name: "index_tag_assignments_on_task_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "title"
     t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "task_id", null: false
     t.index ["project_id"], name: "index_tags_on_project_id"
-    t.index ["task_id"], name: "index_tags_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -54,7 +61,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_085012) do
   end
 
   add_foreign_key "projects", "users"
+  add_foreign_key "tag_assignments", "tags"
+  add_foreign_key "tag_assignments", "tasks"
   add_foreign_key "tags", "projects"
-  add_foreign_key "tags", "tasks"
   add_foreign_key "tasks", "projects"
 end

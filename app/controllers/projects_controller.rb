@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @task = @project.tasks.build
+    
   end
 
   # GET /projects/new
