@@ -1,6 +1,7 @@
 <h1>Editing tag</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', [@tag.project, @tag] %> |
-<%= link_to 'Back', project_tags_path(@tag.project) %>
+<%= form_for(@tag) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit %>
+<% end %>

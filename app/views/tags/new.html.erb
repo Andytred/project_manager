@@ -1,5 +1,8 @@
 <h1>New tag</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', project_tags_path(@tag.project) %>
+
+<%= simple_form_for [ @project, @tag ] do |f| %>
+  <%= f.input :title %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

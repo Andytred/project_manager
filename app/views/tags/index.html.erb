@@ -1,25 +1,14 @@
 <h1>Listing tags</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Project</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<<ul>
+  <% @tag.each do |tag| %>
+    <li><%= tag.title %></li>
+    <li class="list-group-item">
+      <%= tag.title %>
+      
+                  <td><%= link_to 'Destroy', [tag.project, tag],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </li>
+<br>
+  <% end %>
+</ul>
 
-<% @tag.each do |tag| %>
-  <tr>
-    <td><%= tag.title %></td>
-    <td><%= tag.project %></td>
-    <td><%= link_to 'Show', [tag.project, tag] %></td>
-    <td><%= link_to 'Edit', edit_project_tag_path(tag.project, tag) %></td>
-    <td><%= link_to 'Destroy', [tag.project, tag], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Tag', new_project_tag_path(params[:project_id]) %>

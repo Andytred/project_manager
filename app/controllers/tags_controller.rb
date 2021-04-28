@@ -1,73 +1,60 @@
 class TagsController < ApplicationController
-  before_action :set_project
-  
+  before_action :authenticate_user!
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
-
-  # GET projects/1/tags
+  
   def index
-    @project = Project.all
-    @task = Task.all
     @tag = Tag.all
     
   end
-
-  # GET projects/1/tags/1
+  
   def show
-  end
-
-  # GET projects/1/tags/new
-  def new
-    @tag = @project.tasks.build
-  end
-
-  # GET projects/1/tags/1/edit
-  def edit
-  end
-
-  # POST projects/1/tags
-  def create
-    @tag = @project.tags.build(tag_params)
-
-    if @tag.save
-      redirect_to(@tag.project)
-    else
-      render action: 'new'
-    end
-  end
-
-  # PUT projects/1/tags/1
-  def update
+    @tag = Tag.find(params[:id])
     
- @task = @project.tags.build(tag_params)
+  end
 
-    if @task.save
-      redirect_to(@task.project)
-    else
-      render action: 'new'
+
+  def new
+    @project = Project.find(params[:project_id])
+    @tag = Tag.new
+  end
+ 
+  def edit
+    @tag = Tag.find(params[:id])
+  end
+
+
+  def create
+    @tag = Tag.new(tag_params)
+    @project = Project.find(params[:project_id])
+    @tag.project = @project
+      if @tag.save
+      redirect_to project_tags_url(@project)
+      else
+        render :new
     end
   end
-  # DELETE projects/1/tags/1
-  def destroy
-    @tag.destroy
 
-    redirect_to project_tags_url(@project)
+  def update
+    @tag = Tag.find(params[:id])
+    @tag.update(tag_params)
+    redirect_to project_task_tag_path(@tag)
+    end
+ 
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    redirect_to project_path(@tag.project)
   end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-       @project = current_user.projects.find(params[:project_id])
-    end
 
-    
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
 
-    def set_tag
-      @tag = @project.tags.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def tag_params
-      params.require(:tag).permit(:title, :project_id, :task_id)
-      
-    end
+  def tag_params
+    params.require(:tag).permit(:title)
+  end
+  
 end
