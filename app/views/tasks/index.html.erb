@@ -1,3 +1,19 @@
+<h1>Task</h1>
+<%= form_tag project_tasks_path, :method => "get" do %>
+  <%= label_tag(:search, "what") %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag("Search", :title => nil) %>
+  <% end %>
+
+<% @taskss.each do |task| %>
+  <ul>
+    <li><%= link_to task.title, project_tasks_path(task) %></li>
+  </ul>
+<% end %>
+
+
+
+
 <h1>Listing tasks</h1>
 
 <table>
@@ -27,3 +43,4 @@
 <br />
 
 <%= link_to 'New Task', new_project_task_path(params[:project_id]) %>
+  

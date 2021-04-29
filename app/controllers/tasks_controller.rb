@@ -1,11 +1,16 @@
+
+
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+  
   # GET projects/1/tasks
   def index
+    
     @tasks = @project.tasks
+    @taskss = Task.search(params[:search])
   end
 
   # GET projects/1/tasks/1
@@ -15,7 +20,6 @@ class TasksController < ApplicationController
   # GET projects/1/tasks/new
   def new
     @task = @project.tasks.build
-    raise
   end
 
   # GET projects/1/tasks/1/edit
@@ -36,7 +40,7 @@ class TasksController < ApplicationController
   
   # PUT projects/1/tasks/1
   
-def update
+  def update
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @project, notice: "Task was successfully updated." }
@@ -70,6 +74,8 @@ def update
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:title, :description, :is_done, :project_id, :tag_ids => [])
+      params.require(:task).permit(:title, :description, :is_done, :project_id, :search, :tag_ids => [])
     end
+ 
 end
+
