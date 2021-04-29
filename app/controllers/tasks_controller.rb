@@ -29,9 +29,15 @@ class TasksController < ApplicationController
 
   # POST projects/1/tasks
   def create
+
+    
     @task = @project.tasks.build(task_params)
 
     if @task.save
+      @tag_ids = params[:task][:tag_ids]
+      @tag_ids.each do |tag_id|
+        TagAssignment.create(task: @task, tag_id: tag_id)
+      end
       redirect_to(@task.project)
     else
       render action: 'new'

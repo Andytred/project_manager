@@ -49,8 +49,15 @@
             </div>
           </div>
           <h5 class='card-title mb-2'>
+
             <%= task.title %>
           </h5>
+        <ul>
+          <% task.tags.each do |tag| %>
+            <li><%= tag.title%> </li>
+          <% end %>
+        </ul>
+
           <p><%= task.description %></p>
           <%= task.is_done ? "Done" : "Not completed"%>
         </div>
