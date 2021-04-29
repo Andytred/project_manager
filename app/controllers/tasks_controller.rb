@@ -20,6 +20,7 @@ class TasksController < ApplicationController
   # GET projects/1/tasks/new
   def new
     @task = @project.tasks.build
+    
   end
 
   # GET projects/1/tasks/1/edit

@@ -1,14 +1,18 @@
 
 
-<h1>Listing tags</h1>
+<h1>All tags</h1>
 
-<<ul>
+<ul>
   <% @tag.each do |tag| %>
-    <li><%= tag.title %></li>
-    <li class="list-group-item">
-      <%= tag.title %>
-      
-                  <td><%= link_to 'Destroy', [tag.project, tag],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        <%= tag.title %>
+      </div>
+      <div>
+        <td><%= link_to 'Destroy', [tag.project, tag],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </div>
+        
     </li>
 <br>
   <% end %>

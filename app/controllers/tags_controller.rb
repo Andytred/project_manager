@@ -16,6 +16,7 @@ class TagsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @tag = Tag.new
+    @tag.save
   end
  
   def edit

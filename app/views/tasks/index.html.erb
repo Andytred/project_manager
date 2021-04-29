@@ -3,19 +3,15 @@
   <%= label_tag(:search, "what") %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag("Search", :title => nil) %>
-  <% end %>
-
-<% @taskss.each do |task| %>
-  <ul>
-    <li><%= link_to task.title, project_tasks_path(task) %></li>
-  </ul>
 <% end %>
 
 
-
+<h3>Search Result</h3>  
+<% @taskss.each do |result| %>  
+  <%= result.title %><br>  
+<% end %>
 
 <h1>Listing tasks</h1>
-
 <table>
   <tr>
     <th>Title</th>
@@ -26,13 +22,11 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @tasks.each do |task| %>
   <tr>
     <td><%= task.title %></td>
     <td><%= task.description %></td>
     <td><%= task.is_done %></td>
-    <td><%= task.project %></td>
     <td><%= link_to 'Show', [task.project, task] %></td>
     <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
     <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -36,6 +36,7 @@
 <hr>
 
 <h4>Tasks</h4>
+  <%= link_to 'All Tasks', [@task.project, @task], class: 'btn btn-info mb-4' %> 
   <% @project.tasks.each do |task| %>
     <% if task.persisted? %>
       <div class="card mb-3">
