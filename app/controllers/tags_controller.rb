@@ -4,7 +4,9 @@ class TagsController < ApplicationController
   
   def index
     @tag = Tag.all
-    
+    @project = Project.find(params[:project_id])
+    @tags = Tag.new
+    @tags.save
   end
   
   def show
@@ -16,7 +18,7 @@ class TagsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @tag = Tag.new
-    @tag.save
+   
   end
  
   def edit
@@ -39,10 +41,9 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
     @tag.update(tag_params)
     redirect_to project_task_tag_path(@tag)
-    end
+  end
  
   def destroy
-    @tag = Tag.find(params[:id])
     @tag.destroy
     redirect_to project_path(@tag.project)
   end

@@ -4,6 +4,7 @@ RSpec.describe Task, type: :model do
   context "validate test" do
     it 'ensures title presence'do
       task = Task.new(title: 'title').save
+     
     end
     it 'ensures description presence'do
       task = Task.new(description: 'title').save

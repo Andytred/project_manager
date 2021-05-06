@@ -1,12 +1,8 @@
 <h1>Task</h1>
 <%= form_tag project_tasks_path, :method => "get" do %>
-  <%= label_tag(:search, "what") %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag("Search", :title => nil) %>
 <% end %>
-
-
-<h3>Search Result</h3>  
 <% @taskss.each do |result| %>  
   <%= result.title %><br>  
 <% end %>
@@ -17,17 +13,14 @@
     <th>Title</th>
     <th>Description</th>
     <th>Is done</th>
-    <th>Project</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    
+   
   </tr>
 <% @tasks.each do |task| %>
   <tr>
     <td><%= task.title %></td>
     <td><%= task.description %></td>
-    <td><%= task.is_done %></td>
-    <td><%= task.tags %></td>
+    <td><%= task.is_done ? "Done" : "Not completed"%></td>
     <td><%= link_to 'Show', [task.project, task] %></td>
     <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
     <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -37,5 +30,4 @@
 
 <br />
 
-<%= link_to 'New Task', new_project_task_path(params[:project_id]) %>
-  
+<%= link_to 'New Task', new_project_task_path(params[:project_id]), class: 'btn btn-info mb-4' %>

@@ -1,20 +1,21 @@
-
-
-<h1>All tags</h1>
-
 <ul>
-  <% @tag.each do |tag| %>
-    
-    <li class="list-group-item d-flex justify-content-between">
-      <div>
-        <%= tag.title %>
-      </div>
-      <div>
-        <td><%= link_to 'Destroy', [tag.project, tag],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </div>
-        
-    </li>
-<br>
+  <h1>New tag</h1>
+    <%= simple_form_for [ @project, @tags ] do |f| %>
+      <%= f.input :title %>
+      <%= f.submit "Submit", class: "btn btn-primary mb-4" %>
+    <% end %>
+    <h1>All tags</h1>
+    <% @tag.each do |tag| %>
+      <li class="list-group-item d-flex justify-content-between">
+        <div>
+          <%= tag.title %>
+        </div>
+        <div>
+          <td><%= link_to 'Destroy', [tag.project, tag],class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </div>
+      </li>
+    <br>
   <% end %>
 </ul>
+
 

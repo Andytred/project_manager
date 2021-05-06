@@ -7,19 +7,19 @@ class ProjectsController < ApplicationController
   
   def index
     @pagy, @projects = pagy(current_user.projects)
-    
+  
   end
 
- 
+
   def show
     @task = @project.tasks.build
-    
+
   end
 
-  
+
   def new
-   
     @project = current_user.projects.build
+
   end
 
   
@@ -57,9 +57,11 @@ class ProjectsController < ApplicationController
 
   
   def destroy
-    @project = Project.find(params[:id])
+    respond_to do |format|
     @project.destroy
-    redirect_to projects_path
+    format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+    format.json { head :no_content }
+    end
   end
 
   private

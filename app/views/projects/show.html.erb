@@ -49,7 +49,6 @@
             </div>
           </div>
           <h5 class='card-title mb-2'>
-
             <%= task.title %>
           </h5>
         <ul>
@@ -57,12 +56,11 @@
             <li><%= tag.title%> </li>
           <% end %>
         </ul>
-
-          <p><%= task.description %></p>
-          <%= task.is_done ? "Done" : "Not completed"%>
-        </div>
+        <p><%= task.description %></p>
+        <%= task.is_done ? "Done" : "Not completed"%>
       </div>
-    <% end %>
-  <% end%>  
+    </div>
+  <% end %>
+<% end%>  
 
 
